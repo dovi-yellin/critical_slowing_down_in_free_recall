@@ -7,7 +7,7 @@ import sys
 
 import numpy as np
 
-from models import RateModel
+from code.infrastructure.models import RateModel
 from RateModelAnalysis import multi_run_analysis
 from initParams import initParams, read_config
 

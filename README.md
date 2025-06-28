@@ -2,10 +2,13 @@
 
 This repository contains all data, code, and documentation associated with the study **"Critical Slowing Down in Free Recall"**, which investigates early-warning signals in cognitive dynamics during memory retrieval. This work explores whether slowing behavior and variability in recall sequences can be quantitatively modeled as precursors to system transitions in memory performance.
 
+[results/]
+
 ## Overview
 
-- 📁 `data/` – Raw and processed datasets, with accompanying metadata
 - 📁 `code/` – Analysis and preprocessing scripts
+- 📁 `data/` – Raw and processed datasets, with accompanying metadata
+- 📁 `examples/` – Demonstrations for getting started
 - 📁 `notebooks/` – Exploratory notebooks for model development and hypothesis testing
 - 📁 `results/` – Statistical outputs and visualizations used in the publication
 - 📁 `docs/` – Supplementary materials and manuscript source files
@@ -15,7 +18,7 @@ This repository contains all data, code, and documentation associated with the s
 Clone this repository and install dependencies:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/critical-slowing-down-free-recall.git
+git clone https://github.com/dovi-yellin/critical-slowing-down-free-recall.git
 cd critical-slowing-down-free-recall
 ```
 
