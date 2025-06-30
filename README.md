@@ -1,6 +1,6 @@
 # Critical Slowing Down in Free Recall
 
-This repository contains all data, code, and documentation associated with the study **"Critical Slowing Down in Free Recall"**, which investigates early-warning signals in cognitive dynamics during memory retrieval. This work explores whether slowing behavior and variability in recall sequences can be quantitatively modeled as precursors to system transitions in memory performance.
+This repository contains relevant code, data and documentation associated with the study "Adaptive proximity to criticality underlies amplification of ultra-slow fluctuations during free recall". The study explores how the phenomenon of "critical slowing down" may be related to the generative process involved in memory recall. More specifically, this work simulates random recurrent networks demonstrating that a small modulation towards a critical transition may lead to specific amplification in the power of slow fluctuations.
 
 ## Overview
 
@@ -16,8 +16,8 @@ This repository contains all data, code, and documentation associated with the s
 Clone this repository and install dependencies:
 
 ```bash
-git clone https://github.com/dovi-yellin/critical-slowing-down-free-recall.git
-cd critical-slowing-down-free-recall
+git clone https://github.com/dovi-yellin/critical_slowing_down_in_free_recall.git
+cd critical_slowing_down_in_free_recall
 ```
 
 We recommend using a virtual environment:
@@ -29,15 +29,16 @@ pip install -r requirements.txt
 
 
 ## Getting Started
+The `demos/` folder includes self-contained examples on: (a) how to run a short simulation of the random recurrent network while modulating its proximity to criticality, and (b) how to analyze the results.  
 
 
 
 ## Citation
 ```
 @article{yellin2025critical,
-  title={Modulation of Proximity to Criticality Enhances Slow Activity Fluctuations During Free Recall},
+  title={Adaptive proximity to criticality underlies amplification of ultra-slow fluctuations during free recall},
   authors={Yellin, Dovi and Siegel, Noam and Malach, Rafael and Shriki, Oren},
-  journal={PLOS Computational Biology},
+  journal={biorxiv},
   year={2025},
   doi={10.1101/2023.02.24.529043}
 }
