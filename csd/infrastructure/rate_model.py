@@ -11,8 +11,8 @@ from datetime import datetime
 import numpy as np
 from numpy import ndarray
 from tqdm import tqdm
-from initParams import initParams
-from utils import butter_lowpass_filter, butter_highpass_filter
+from .initParams import initParams
+from .utils import butter_lowpass_filter, butter_highpass_filter
 
 weights = ndarray  # type alias
 

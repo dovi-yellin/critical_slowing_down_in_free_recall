@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 from matplotlib import mlab
 
-from initParams import initParams, read_config
+from csd.infrastructure.initParams import initParams, read_config
 
 path_str = os.path.dirname(os.path.abspath(__file__))
-filename = os.path.join(path_str, r'results//rate_model_G_0.8_to_0.98_run_20250607T130640.pkl')
+filename = os.path.join(path_str, r'results//rate_model_G_0.8_to_0.98.pkl')
 results_dicts= pickle.load(open(filename, 'rb'))
 
 params: initParams = results_dicts[0]['params']
@@ -52,3 +52,4 @@ plt.xlabel('Freq. (Hz)', fontsize=lettersize)
 plt.ylabel('Power (Index)', fontsize=lettersize)
 plt.gcf().subplots_adjust(bottom=0.15)
 plt.ylabel('Power (index)', fontsize=lettersize)
+plt.show()

@@ -10,7 +10,7 @@ from matplotlib import mlab
 from initParams import initParams, read_config
 
 # Dovi - leave the following as examples for future analysis code
-from code.infrastructure.models import RateModel
+from csd.infrastructure.models import RateModel
 # from RateModelAnalysis import neural_activity_plot, stable_activity_plot
 # from RateModelAnalysis import welch_spectrum_plot, multi_run_analysis, compute_sum_power
 

@@ -1,22 +1,12 @@
 import copy
 import sys
-
 import pickle
 from datetime import datetime
-
 import numpy as np
-import pandas as pd
 
-from initParams import initParams, read_config
-
-# Dovi - leave the following as examples for future analysis code
-from models import RateModel
-from RateModelAnalysis import multi_run_analysis, compute_sum_power
-
-from scipy.signal import correlate
-from scipy.stats import pearsonr
-from utils import butter_bandpass_filter
-from matplotlib import mlab
+from csd.infrastructure.initParams import initParams, read_config
+from csd.infrastructure.rate_model import RateModel
+from csd.infrastructure.utils import butter_bandpass_filter
 
 if __name__ == '__main__':
     config = read_config('test_general.json')
@@ -62,13 +52,12 @@ if __name__ == '__main__':
 
         params.gamma += 0.006
 
-multi_run_analysis(results_dicts, labels)
 
 b_save = True
 results_dir='results'
 if b_save:
     iso_8601_format = '%Y%m%dT%H%M%S'  # e.g., 20211119T221000
-    fname = f"{results_dir}/run_{datetime.now().strftime(iso_8601_format)}.pkl"
+    fname = f"{results_dir}/rate_model_G_0.8_to_0.98.pkl"  # _run_{datetime.now().strftime(iso_8601_format)}.pkl"
     print(f"dumping results to {fname}")
     with open(fname, 'wb') as f:
-        pickle.dump(results_dicts, f) # pickle.dump(mean_pwr_arr, f)
+        pickle.dump(results_dicts, f)
