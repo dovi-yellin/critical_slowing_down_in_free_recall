@@ -29,7 +29,11 @@ pip install -r requirements.txt
 
 
 ## Getting Started
-The `demos/` folder includes self-contained examples on: (a) how to run a short simulation of the random recurrent network while modulating its proximity to criticality, and (b) how to analyze the results.  
+The `examples/` folder includes self-contained examples on: (a) how to run a short simulation of the random recurrent network while modulating its proximity to criticality, and (b) how to analyze the results.  
+
+To run this complete workflow, start at the project root and execute python `demo_run_simulation.py`: the script loads simulation parameters from `test_general.json`, lets you override any of them directly in the code (e.g., change network size or run-time), simulates the rate-model across a small parameter sweep, and writes the outputs to `results/rate_model_*.pkl`. Note the size of the generated `pkl` is larger than 5 GB. 
+
+When simulation finishes, launch python `demo_run_analysis.py`; this second script automatically reads the freshly generated `.pkl`, extracts the activity traces and provides the ability to visualize results (e.g., plot power-spectral-density curves for each run etc.).
 
 
 
