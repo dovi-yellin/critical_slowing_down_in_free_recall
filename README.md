@@ -1,10 +1,10 @@
 # Critical Slowing Down in Free Recall
 
-This repository contains relevant code, data and documentation associated with the study "Adaptive proximity to criticality underlies amplification of ultra-slow fluctuations during free recall". The study explores how the phenomenon of "critical slowing down" may be related to the generative process involved in memory recall. More specifically, this work simulates random recurrent networks demonstrating that a small modulation towards a critical transition may lead to specific amplification in the power of slow fluctuations.
+This repository contains relevant code, data and documentation associated with the study "Adaptive proximity to criticality underlies amplification of ultra-slow fluctuations during free recall". The study explores how the phenomenon of "critical slowing down" may be related to the generative process involved in memory recall. More specifically, this work simulates random recurrent networks demonstrating that a small modulation towards a critical transition may lead to specific amplification in the power of slow fluctuations, as observed in the empirical study of free recall using iEEG.
 
 ## Overview
 
-- 📁 `code/` – Analysis and preprocessing scripts
+- 📁 `csd/` – Simulation infrastructure and analysis codebase
 - 📁 `data/` – Raw and processed datasets, with accompanying metadata
 - 📁 `examples/` – Demonstrations for getting started
 - 📁 `notebooks/` – Exploratory notebooks for model development and hypothesis testing

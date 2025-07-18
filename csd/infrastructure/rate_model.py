@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """Rate model.
-Implementation of the Rate model was based on github submission of:
-Brain-wide Maps Reveal Stereotyped Cell-Type-Based Cortical Architecture and Subcortical Sexual Dimorphism
-Cell 2017
-@author: Guangyu Robert Yang, 2015-2017"""
+Implementation of the Rate model as adapted in part from: https://github.com/gyyang/KimYang2017_Cell.
+See more details in:
+Kim et al. (2017) Brain-wide Maps Reveal Stereotyped Cell-Type-Based Cortical Architecture and Subcortical Sexual Dimorphism. Cell
+@author: Guangyu Robert Yang, 2015-2017 (MIT License)"""
 
 import pickle
 from datetime import datetime
