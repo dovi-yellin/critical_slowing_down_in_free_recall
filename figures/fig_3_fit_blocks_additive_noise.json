@@ -1,5 +1,5 @@
 {
-	"test_name": "best_norman_fit_with_additive_noise_reduction_near_criticality",
+	"test_name": "best_norman_fit_with_additive_noise_near_criticality",
 	"random_seed": "43",
 	"params": {
 		"N": "240",

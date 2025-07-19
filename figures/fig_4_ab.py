@@ -4,14 +4,13 @@
 
 import copy
 import sys
-
 import numpy as np
-
-from models import RateModel
-from initParams import initParams
 import pickle
 from datetime import datetime
 import matplotlib.pyplot as plt
+
+from csd.infrastructure.rate_model import RateModel
+from csd.infrastructure.initParams import initParams
 
 
 def searchspace(start, stop, power, num):
@@ -35,8 +34,6 @@ def welch_spectrum_plot(results_dict, fig, lettersize, label, scale=1.0):
     activity_per_unit = np.transpose(results_dict["r_store"])
     params = results_dict["params"]
     model_activity = activity_per_unit[:, (int(params.start_sample) - 1) : -1]
-    # mean_activity = np.mean(model_activity[0:int(1.0 * params.N), :], axis=0)
-    # mean_activity = mean_activity - np.mean(mean_activity)
     mean_activity = np.mean(model_activity[0 : int(1.0 * params.N), :], axis=1)
     mean_activity = mean_activity[:, np.newaxis]
     mean_reduced_activity = model_activity - mean_activity
@@ -116,19 +113,6 @@ if __name__ == "__main__":
         # Append label for plot legend
         labels.append(f"{probability * gamma * mu:.5f}")
 
-        # mu_W.append(np.mean(model.W))
-        # sigma_W.append(np.var(model.W))
-
-        # optionally - modulate connections
-        # model.modulate_connections_by_addition(ext_params['change_factor'])
-        # model.modulate_connections_by_multiplier(ext_params['change_factor']) # (1.1)
-        # model.add_to_noise_factor(0.1)
-        # model.modulate_noise_by_multiplier(2)
-
-        # gamma += delta/9 # 0.00033
-        # labels.append(str(noise_factor_add))
-        # noise_factor_add += 5
-
     # Analyze simulation results - plot circuit activity profiles
     # multi_run_analysis(results_dicts, labels)
 
@@ -141,12 +125,6 @@ if __name__ == "__main__":
         print(f"running analysis of model {idx + 1}/{len(results_dicts)}")
         params = results_dict["params"]
         print(f"params ares {params}")
-
-        scale = 1.0
-        if idx == 0:
-            scale = 100000000000000
-        if idx == 1:
-            scale = 2
         welch_spectrum_plot(results_dict, fig, lettersize, labels[idx])
 
     plt.yticks(fontsize=24)
@@ -154,7 +132,6 @@ if __name__ == "__main__":
     plt.legend(loc="best", fontsize=18)
     # plt.xticks(fr, [ f"{int(np.log10(x))}" for x in fr])
     plt.gcf().subplots_adjust(bottom=0.15, left=0.15)
-    # plt.ylim(0.000001, 100000)
     fig.tight_layout()
 
 
