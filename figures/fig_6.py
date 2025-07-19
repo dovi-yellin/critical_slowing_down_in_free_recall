@@ -5,7 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-full_filename = r'data\fig6_model_network_size_100_plus_gamma_0.08_plus_rep_5.csv'
+full_filename = r'..\results\fig6_model_network_size_100_plus_gamma_0.08_plus_rep_5.csv'
 df = pd.read_csv(full_filename)
 mean_pwr_arr_df = df[['gamma','network_size','norm_sum_power']].groupby(['gamma','network_size'])['norm_sum_power'].mean().to_frame().reset_index()
 

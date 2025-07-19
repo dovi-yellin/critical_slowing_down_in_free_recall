@@ -13,8 +13,13 @@ from csd.infrastructure.initParams import initParams
 from csd.infrastructure.utils import butter_bandpass_filter
 
 #######################################################################################
-#          Initial range fitting of simulation outcome to Nir et al., 2008 paper              #
+#          Initial range fitting of simulation outcome to Nir et al., 2008 paper      #
 #######################################################################################
+
+###################################################################################
+# Load simulation results as stored in pkl files (due to their large size, these files were not uploaded to github)
+# Use JSON configuration file to simulate and reconstruct files marked in comment below
+###################################################################################
 
 filename = "results/fig2_near_critical_PSD_gamma_0.094_tau_20_N_240_20231109.pkl"  # 'results/fig2_PSD_gamma_0.08_tau_20_N_240_20231110.pkl'
 results_dicts = pickle.load(open(filename, "rb"))
@@ -170,7 +175,7 @@ fig.tight_layout()
 
 
 # load dataframe with summary of correlational analysis
-df_corr = pd.read_csv("C:/Research/Spontaneous_activity/Rate_model/CriticalSlowDown/research-critical-slow-down/data/fig2_correlations.csv")
+df_corr = pd.read_csv(r"..\results\fig2_correlations.csv")
 
 lettersize = 24
 x_gamma = df_corr.values[:, 0] * 0.2 * 49.881
@@ -239,39 +244,12 @@ lettersize = 24
 N = df_corr.values[:, 0]
 fig = plt.figure(figsize=(8, 8))
 # ax2 = ax.twinx()
-plt.plot(
-    N, df_corr.values[:, 2], label="Max correlation", linewidth=4, color="blue"
-)  # max neuroal correlation
+plt.plot(N, df_corr.values[:, 2], label="Max correlation", linewidth=4, color="blue") 
 plt.plot(N, df_corr.values[:, 3], label="Mean correlation", linewidth=4, color="green")
-
-plt.plot(
-    N, df_corr.values[:, 6], label="Normalized sum power", linewidth=4, color="orange"
-)
-# ax2.set_ylabel('Power', color='orange')
-# plt.plot(N, np.divide(df_corr.values[:,5]),np.log(df_corr.values[:,4]), label='Auto-to-cross corr ratio', linewidth=4, color='orange')
-
+plt.plot(N, df_corr.values[:, 6], label="Normalized sum power", linewidth=4, color="orange")
 plt.legend(loc="best", fontsize=lettersize)
 plt.xlabel("N", fontsize=lettersize)
 plt.ylabel("Correlation", fontsize=lettersize)
 plt.xticks(fontsize=lettersize)
 plt.yticks(fontsize=lettersize)
 
-# example for secondary y-axis, in case all data should fit in single plot
-fig, ax1 = plt.subplots()
-ax2 = ax1.twinx()
-ax1.plot(
-    N, df_corr.values[:, 2], label="Max correlation", linewidth=4, color="blue"
-)  # max neuroal correlation
-ax1.plot(N, df_corr.values[:, 3], label="Mean correlation", linewidth=4, color="green")
-plt.yticks(fontsize=lettersize)
-
-ax2.plot(
-    N, df_corr.values[:, 6], label="Normalized sum power", linewidth=4, color="orange"
-)
-plt.yticks(fontsize=lettersize)
-plt.xticks(fontsize=lettersize)
-ax1.set_xlabel("N", fontsize=lettersize)
-ax1.set_ylabel("Correlation", fontsize=lettersize)
-ax2.set_ylabel("Normalized sum power", color="orange", fontsize=lettersize)
-ax1.legend(loc="best", fontsize=lettersize)
-ax2.legend(loc="best", fontsize=lettersize)
