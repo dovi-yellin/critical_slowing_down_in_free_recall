@@ -13,7 +13,7 @@ from csd.infrastructure.initParams import initParams
 from csd.infrastructure.utils import butter_bandpass_filter
 
 #######################################################################################
-#          Initial range fitting of simulation outcome to Nir et al 2007 paper              #
+#          Initial range fitting of simulation outcome to Nir et al., 2008 paper              #
 #######################################################################################
 
 filename = "results/fig2_near_critical_PSD_gamma_0.094_tau_20_N_240_20231109.pkl"  # 'results/fig2_PSD_gamma_0.08_tau_20_N_240_20231110.pkl'

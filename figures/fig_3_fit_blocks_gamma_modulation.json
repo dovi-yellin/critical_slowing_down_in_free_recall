@@ -1,0 +1,19 @@
+{
+	"test_name": "best_norman_fit_with_additive_noise_reduction_near_criticality",
+	"random_seed": "45",
+	"params": {
+		"N": "240",
+		"stabilize_time":"600",
+		"total_time":"1800",
+		"tau": "20",
+		"alpha": "0.01",
+		"wins": "10000",
+		"block_size": "600",
+		"gamma1": "0.094",
+		"gamma2": "0.0945",
+		"noise_factor_add1": "0.0",
+		"noise_factor_add2": "0.00",
+		"noise_factor_mult": "1.0",
+		"scale_K": "700"
+	}
+}

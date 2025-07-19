@@ -1,0 +1,19 @@
+{
+	"test_name": "best_Nir_fit_near_criticality",
+	"random_seed": "44",
+	"params": {
+		"N": "400",
+		"stabilize_time":"300",
+		"total_time":"1500",
+		"tau": "18",
+		"alpha": "0.01",
+		"wins": "10000",
+		"block_size": "0",
+		"gamma1": "0.0945",
+		"gamma2": "0.090",
+		"noise_factor_add1": "0.0",
+		"noise_factor_add2": "0.0",
+		"noise_factor_mult": "1.0",
+		"scale_K": "850000"
+	}
+}

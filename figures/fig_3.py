@@ -4,14 +4,41 @@ from scipy import stats
 import matplotlib.pyplot as plt
 from matplotlib import mlab
 
-
-from utils import butter_lowpass_filter
-from matlab_to_numpy import loadmat
+from csd.infrastructure.utils import butter_lowpass_filter
+from csd.infrastructure.matlab_to_numpy import loadmat
 
 fs = 1000
 
-# filename_gamma_modulation = 'results/blocks_by_gamma_modulation_run_1_seed_45.pkl'
-filename_additive_noise = "results/fig3/blocks_by_additive_noise_run_1_seed_45.pkl"
+# fetch Norman et al., 2017 data
+fpath = r"..\data\figdata.mat"
+d = loadmat(fpath)
+
+X = np.asarray(d["figdata"]["rawSpectrum"]["X"])
+Y = np.asarray(d["figdata"]["rawSpectrum"]["Y"])
+
+fig = plt.figure(1, figsize=(10, 10))
+lettersize = 24
+plt.semilogx(
+    X[0], Y[0], label="Norman - Recall", linewidth=6, alpha=0.9, color="red"
+)  # plt.plot(X[0], Y[0])
+plt.semilogx(
+    X[1], Y[1], label="Norman - Resting state", linewidth=6, alpha=0.9, color="blue"
+)
+plt.xlabel("Freq. (Hz)", fontsize=lettersize * 1.5)
+plt.gcf().subplots_adjust(bottom=0.15)
+plt.ylabel("Power (dB)", fontsize=lettersize * 1.5)
+plt.legend(loc="lower left", fontsize=20)
+plt.xlim(0.025, 18)
+plt.ylim(-20, 2)
+plt.xticks(fontsize=lettersize)
+plt.yticks(fontsize=lettersize)
+fig.tight_layout()
+
+###################################################################################
+# Load simulation results as stored in pkl files (due to their large size, these files were not uploaded to github)
+# Use JSON configuration file to simulate and reconstruct files marked in comment below
+###################################################################################
+
 filenames_additive_noise = [
     "results/fig3/blocks_by_additive_noise_run_1_seed_40_additive_12.5.pkl",
     "results/fig3/blocks_by_additive_noise_run_1_seed_41_additive_12.5.pkl",
@@ -22,18 +49,15 @@ filenames_additive_noise = [
     "results/fig3/blocks_by_additive_noise_run_1_seed_48_additive_12.5.pkl",
     "results/fig3/blocks_by_additive_noise_run_1_seed_49_additive_12.5.pkl",
 ]
-# filenames_additive_noise = ['results/fig3/blocks_by_additive_noise_run_1_seed_40_additive_12.5.pkl']
-filename = filename_additive_noise  # filename_gamma_modulation
 
 nfft = 9000
-K = 700  # scale factor
+K = 700  # scaling factor to match arbitrary metric in Norman et al power index
 spct_blocks1 = []
 spct_blocks2 = []
 for filename in filenames_additive_noise:
     result_dict = pickle.load(open(filename, "rb"))
 
     # Compute blocks' PSD
-    # ex = int(fs * 10) # remove additional few seconds at start of blocks, till signal stabilizes
     activity_block1 = result_dict["activity_rest"]
     mean_reduced_block1 = activity_block1 - np.mean(activity_block1)
 
@@ -61,21 +85,6 @@ var_spct_block1 = np.std(spct_blocks1, axis=0)  # stats.sem(spct_blocks1, axis=0
 mean_spct_block2 = np.mean(spct_blocks2, axis=0)
 var_spct_block2 = np.std(spct_blocks2, axis=0)  # stats.sem(spct_blocks2, axis=0)
 
-# fetch Norman et al data
-fpath = r"C:\Research\Spontaneous_activity\Rate_model\CriticalSlowDown\data\figdata.mat"
-d = loadmat(fpath)
-
-X = np.asarray(d["figdata"]["rawSpectrum"]["X"])
-Y = np.asarray(d["figdata"]["rawSpectrum"]["Y"])
-
-# work in process - compute Pearson correlation between empirical and simulated PSD
-# from scipy import interpolate
-# f1 = (1/freqs1[1])
-# f2 = (1/X[0,1])
-# for row in spct_blocks1:
-#     f = interpolate.interp2d(freqs1, row, X[0], kind='cubic')
-#     corr, _ = pearsonr(row, f.y)
-
 fig = plt.figure(1, figsize=(10, 10))
 lettersize = 28
 plt.semilogx(
@@ -84,7 +93,7 @@ plt.semilogx(
     label="Simulation - rest state",
     linewidth=4,
     color="green",
-)  # plt.plot(freqs, spct_db)
+)
 plt.fill_between(
     freqs1,
     mean_spct_block1 - var_spct_block1,
@@ -104,7 +113,7 @@ plt.fill_between(
 )
 plt.semilogx(
     X[0], Y[0], label="Norman - Recall", linewidth=2, alpha=0.9, color="red"
-)  # plt.plot(X[0], Y[0])
+)
 plt.semilogx(
     X[1], Y[1], label="Norman - Resting state", linewidth=2, alpha=0.9, color="blue"
 )
@@ -152,17 +161,15 @@ print("p-value for one tailed test is %f" % one_tailed_p_value)
 
 w, p = stats.wilcoxon(diff_spect_by_freq[:, 1])
 
-# for Supplementary - show how additional noise influences the CSD
+# for Fig 5c - show how additional noise influences the CSD
 filenames_additive_noise = [
     "results/fig3/blocks_by_additive_noise_run_1_seed_45_additive_10.pkl",
     "results/fig3/blocks_by_additive_noise_run_1_seed_45_additive_15.pkl",
     "results/fig3/blocks_by_additive_noise_run_1_seed_45_additive_25.pkl",
     "results/fig3/blocks_by_additive_noise_run_1_seed_45_additive_50.pkl",
 ]
-filename = filename_additive_noise  # filename_gamma_modulation
 
 nfft = 10000
-K = 650  # scale factor
 spct_blocks1 = []
 spct_blocks2 = []
 for filename in filenames_additive_noise:
@@ -190,13 +197,6 @@ for filename in filenames_additive_noise:
 
     spct_blocks1.append(spct_db1)
     spct_blocks2.append(spct_db2)
-
-# fetch Norman et al data
-fpath = r"C:\Research\Spontaneous_activity\Rate_model\CriticalSlowDown\data\figdata.mat"
-d = loadmat(fpath)
-
-X = np.asarray(d["figdata"]["rawSpectrum"]["X"])
-Y = np.asarray(d["figdata"]["rawSpectrum"]["Y"])
 
 fig = plt.figure(1, figsize=(10, 10))
 lettersize = 24
