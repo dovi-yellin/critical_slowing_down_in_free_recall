@@ -6,8 +6,9 @@ This repository contains relevant code, data and documentation associated with t
 
 - 📁 `csd/` – Simulation infrastructure and analysis codebase
 - 📁 `data/` – Raw and processed datasets, with accompanying metadata
-- 📁 `examples/` – Demonstrations for getting started
-- 📁 `notebooks/` – Exploratory notebooks for model development and hypothesis testing
+- 📁 `examples/` – Getting started demonstrations
+- 📁 `figures/` – Scripts for analysis and generation of figures 
+- 📁 `notebooks/` – Scripts demonstrating network analysis
 - 📁 `results/` – Statistical outputs and visualizations used in the publication
 - 📁 `docs/` – Supplementary materials and manuscript source files
 
