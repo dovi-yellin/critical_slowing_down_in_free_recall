@@ -6,9 +6,11 @@ from matplotlib.ticker import FuncFormatter
 from matplotlib import mlab
 
 from csd.infrastructure.initParams import initParams, read_config
+import sys, csd.infrastructure.initParams as _new_init
+sys.modules['initParams'] = _new_init
 
 path_str = os.path.dirname(os.path.abspath(__file__))
-filename = os.path.join(path_str, r'results//rate_model_G_0.8_to_0.98.pkl')
+filename = os.path.join(path_str, r'results\rate_model_G_0.8_to_0.98.pkl')
 results_dicts= pickle.load(open(filename, 'rb'))
 
 params: initParams = results_dicts[0]['params']

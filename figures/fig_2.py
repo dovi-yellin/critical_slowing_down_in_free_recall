@@ -1,3 +1,5 @@
+
+import os
 import pickle
 import numpy as np
 import pandas as pd
@@ -21,7 +23,10 @@ from csd.infrastructure.utils import butter_bandpass_filter
 # Use JSON configuration file to simulate and reconstruct files marked in comment below
 ###################################################################################
 
-filename = "results/fig2_near_critical_PSD_gamma_0.094_tau_20_N_240_20231109.pkl"  # 'results/fig2_PSD_gamma_0.08_tau_20_N_240_20231110.pkl'
+import sys, csd.infrastructure.initParams as _new_init
+sys.modules['initParams'] = _new_init
+
+filename = r"..\results\fig2_near_critical_PSD_gamma_0.094_tau_20_N_240_20231109.pkl"
 results_dicts = pickle.load(open(filename, "rb"))
 
 if isinstance(results_dicts, list):
@@ -229,12 +234,12 @@ plt.xticks([0.8, 0.85, 0.9, 0.95, 1.0], fontsize=lettersize)
 # plt.ylabel(fontsize=lettersize)
 fig.tight_layout()
 
-# load dataframe with summary of correlation by network size analysis
+# load dataframes of two simulation realizations with summary of correlation by network size analysis
 df_corr = pd.read_csv(
-    "C:/Research/Spontaneous_activity/Rate_model/CriticalSlowDown/research-critical-slow-down/data/fig_SI_network_correlation_by_N.csv"
+    r"..\results\fig_SI_network_correlation_by_N.csv"
 )
 df_corr_2 = pd.read_csv(
-    "C:/Research/Spontaneous_activity/Rate_model/CriticalSlowDown/research-critical-slow-down/data/fig_SI_network_correlation_by_N_2.csv"
+    r"..\results\fig_SI_network_correlation_by_N_2.csv"
 )
 
 df_corr = df_corr + df_corr_2
@@ -244,7 +249,7 @@ lettersize = 24
 N = df_corr.values[:, 0]
 fig = plt.figure(figsize=(8, 8))
 # ax2 = ax.twinx()
-plt.plot(N, df_corr.values[:, 2], label="Max correlation", linewidth=4, color="blue") 
+plt.plot(N, df_corr.values[:, 2], label="Max correlation", linewidth=4, color="blue")
 plt.plot(N, df_corr.values[:, 3], label="Mean correlation", linewidth=4, color="green")
 plt.plot(N, df_corr.values[:, 6], label="Normalized sum power", linewidth=4, color="orange")
 plt.legend(loc="best", fontsize=lettersize)
