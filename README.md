@@ -43,8 +43,8 @@ When simulation finishes, launch python `demo_run_analysis.py`; this second scri
 @article{yellin2025critical,
   title={Adaptive proximity to criticality underlies amplification of ultra-slow fluctuations during free recall},
   authors={Yellin, Dovi and Siegel, Noam and Malach, Rafael and Shriki, Oren},
-  journal={biorxiv},
+  journal={Plos Computational Biology},
   year={2025},
-  doi={10.1101/2023.02.24.529043}
+  doi={https://doi.org/10.1371/journal.pcbi.1013528}
 }
 ```
